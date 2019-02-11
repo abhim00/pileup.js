@@ -5,6 +5,7 @@ import {expect} from 'chai';
 
 import jBinary from 'jbinary';
 
+//import RemoteFile from '../main/RemoteFile';
 import LocalFile from '../main/LocalFile';
 
 describe('LocalFile', () => {
@@ -14,6 +15,7 @@ describe('LocalFile', () => {
 
   it('should fetch a subset of a file', function(): any {
     var f = new LocalFile('0to9.txt');
+    //var f = new RemoteFile('/test-data/0to9.txt');
     var promisedData = f.getBytes(4, 5);
 
     expect(f.numNetworkRequests).to.equal(1);
@@ -25,6 +27,7 @@ describe('LocalFile', () => {
 
   it('should fetch subsets from cache', function(): any {
     var f = new LocalFile('0to9.txt');
+    //var f = new RemoteFile('/test-data/0to9.txt');
     return f.getBytes(0, 10).then(buf => {
       expect(buf.byteLength).to.equal(10);
       expect(bufferToText(buf)).to.equal('0123456789');
@@ -39,6 +42,7 @@ describe('LocalFile', () => {
 
   it('should fetch entire files', function(): any {
     var f = new LocalFile('0to9.txt');
+    //var f = new RemoteFile('/test-data/0to9.txt');
     return f.getAll().then(buf => {
       expect(buf.byteLength).to.equal(11);
       expect(bufferToText(buf)).to.equal('0123456789\n');
@@ -48,6 +52,7 @@ describe('LocalFile', () => {
 
   it('should determine file lengths', function(): any {
     var f = new LocalFile('0to9.txt');
+    //var f = new RemoteFile('/test-data/0to9.txt');
     return f.getSize().then(size => {
       expect(size).to.equal(11);
       // TODO: make sure this was a HEAD request
@@ -57,6 +62,7 @@ describe('LocalFile', () => {
 
   it('should get file lengths from full requests', function(): any {
     var f = new LocalFile('0to9.txt');
+    //var f = new RemoteFile('/test-data/0to9.txt');
     return f.getAll().then(buf => {
       expect(f.numNetworkRequests).to.equal(1);
       return f.getSize().then(size => {
@@ -68,6 +74,7 @@ describe('LocalFile', () => {
 
   it('should get file lengths from range requests', function(): any {
     var f = new LocalFile('0to9.txt');
+    //var f = new RemoteFile('/test-data/0to9.txt');
     return f.getBytes(4, 5).then(buf => {
       expect(f.numNetworkRequests).to.equal(1);
       return f.getSize().then(size => {
@@ -79,6 +86,7 @@ describe('LocalFile', () => {
 
   it('should cache requests for full files', function(): any {
     var f = new LocalFile('0to9.txt');
+    //var f = new RemoteFile('/test-data/0to9.txt');
     return f.getAll().then(buf => {
       expect(buf.byteLength).to.equal(11);
       expect(bufferToText(buf)).to.equal('0123456789\n');
@@ -93,6 +101,7 @@ describe('LocalFile', () => {
 
   it('should serve range requests from cache after getAll', function(): any {
     var f = new LocalFile('0to9.txt');
+    //var f = new RemoteFile('/test-data/0to9.txt');
     return f.getAll().then(buf => {
       expect(buf.byteLength).to.equal(11);
       expect(bufferToText(buf)).to.equal('0123456789\n');
@@ -107,6 +116,7 @@ describe('LocalFile', () => {
 
   it('should reject requests to a non-existent file', function(): any {
     var f = new LocalFile('nonexistent-file.txt');
+    //var f = new RemoteFile('/test-data/nonexistent-file.txt');
     return f.getAll().then(buf => {
       throw 'Requests for non-existent files should not succeed';
     }, err => {
@@ -120,6 +130,7 @@ describe('LocalFile', () => {
 
   it('should truncate requests past EOF', function(): any {
     var f = new LocalFile('0to9.txt');
+    //var f = new RemoteFile('/test-data/0to9.txt');
     var promisedData = f.getBytes(4, 100);
 
     return promisedData.then(buf => {
@@ -136,6 +147,7 @@ describe('LocalFile', () => {
 
   it('should fetch entire files as strings', function(): any {
     var f = new LocalFile('0to9.txt');
+    //var f = new RemoteFile('/test-data/0to9.txt');
     return f.getAllString().then(txt => {
       expect(txt).to.equal('0123456789\n');
     });
