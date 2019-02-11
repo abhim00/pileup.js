@@ -14,3 +14,5 @@ class LocalFile extends RemoteFile{
         
     }
 }
+
+module.exports = LocalFile;
