@@ -1,5 +1,5 @@
 /**
- * LocalFile is a representation of a file on a remote server which can be
+ * LocalFile is a representation of a file on a local server which can be
  * fetched in chunks, e.g. using a Range request.
  * @flow
  */
