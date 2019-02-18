@@ -3,14 +3,16 @@
  * fetched in chunks, e.g. using a Range request.
  * @flow
  */
+import RemoteFile from './RemoteFile';
+
 const localserver = require("./server");
 
 class LocalFile extends RemoteFile{
     url: string;
     constructor(url: string){
         super(url)
-        localserver()
-        this.url = "http://localhost:4000/"+url;
+        new localserver()
+        this.url = "http://localhost:3000/"+url;
         
     }
 }
