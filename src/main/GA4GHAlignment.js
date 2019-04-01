@@ -30,7 +30,7 @@ var OP_MAP = {
  * This class acts as a bridge between org.ga4gh.GAReadAlignment and the
  * pileup.js Alignment type.
  */
-class GA4GHAlignment /* implements Alignment */ {
+class GA4GHAlignment implements Alignment {
   pos: number;
   ref: string;
   alignment: Object;
@@ -103,6 +103,9 @@ class GA4GHAlignment /* implements Alignment */ {
     } else {
       return 0;
     }
+  }
+  debugString(): string {
+    return 'in debugString function'
   }
 
   getCoverage(referenceSource: Object): CoverageCount {

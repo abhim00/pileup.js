@@ -5,14 +5,14 @@
  */
 import RemoteFile from './RemoteFile';
 
-const localserver = require("./server");
+//import localserver from "./server";
 
 class LocalFile extends RemoteFile{
     url: string;
     constructor(url: string){
         super(url)
-        new localserver()
-        this.url = "http://localhost:3000/"+url;
+        //new localserver()
+        this.url = "http://localhost:8000/"+url;
         
     }
 }

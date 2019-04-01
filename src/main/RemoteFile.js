@@ -65,6 +65,7 @@ class RemoteFile extends AbstractFile{
 
     var xhr = new XMLHttpRequest();
     xhr.open('GET', this.url);
+    //console.log('GET '+this.url);
     xhr.responseType = 'arraybuffer';
     return this.promiseXHR(xhr).then(([buffer]) => {
       this.fileLength = buffer.byteLength;

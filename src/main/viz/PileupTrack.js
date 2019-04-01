@@ -467,7 +467,8 @@ class PileupTrack extends React.Component<VizProps<DataSource<Alignment>>, State
     var vRead = _.find(trackingCtx.hits[0], hit => hit.read);
     var alert = window.alert || console.log;
     if (vRead) {
-      alert(vRead.read.debugString());
+      alert(vRead.read.testPrintString());
+      //alert(vRead.read.debugString());
     }
   }
 }
