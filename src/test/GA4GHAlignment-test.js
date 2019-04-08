@@ -21,7 +21,7 @@ describe('GA4GHAlignment', function() {
     done();
   });
 
-  it('should provide basic accessors', function(done) {
+  it('should provide basic accessors (including debugString)', function(done) {
     var a = new GA4GHAlignment(sampleAlignments[0]);
     expect(a.name).to.equal('ERR181329.21587964');
     expect(a.getSequence()).to.equal('ATAACCCTAACCATAACCCTAACCCTAACCCTAACCCTAACCCTAACCCTAACCCTAACCCTAACCCTAACCCTAACCCTAACCCTAACCCTAACCCTAA');
@@ -36,6 +36,7 @@ describe('GA4GHAlignment', function() {
       pos: 10007,
       strand: '-'
     });
+    expect(a.debugString()).to.equal('in debugString function');
     done();
   });
 
