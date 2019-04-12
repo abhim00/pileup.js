@@ -25,7 +25,7 @@ describe('SamRead', function() {
     });
   });
 
-  it('should parse BAM records', function(): any {
+  it('should parse BAM records (with debugString function)', function(): any {
     return testReads.then(reads => {
       // The first record in test_input_1_a.sam is:
       // r000 99 insert 50 30 10M = 80 30 ATTTAGCTAC AAAAAAAAAA RG:Z:cow PG:Z:bull
@@ -44,6 +44,9 @@ describe('SamRead', function() {
         pos: 79,
         strand: '-'
       });
+
+      expect(read.debugString().length).to.be.above(0);
+      console.log("SAMREAD : "+read.debugString());
 
       // This one has a more interesting Cigar string
       expect(reads[3].cigarOps).to.deep.equal([

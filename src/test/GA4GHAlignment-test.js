@@ -36,7 +36,9 @@ describe('GA4GHAlignment', function() {
       pos: 10007,
       strand: '-'
     });
-    expect(a.debugString()).to.equal('in debugString function');
+    expect(a.debugString().length).to.be.above(0);
+    console.log(a.debugString());
+  
     done();
   });
 

@@ -105,8 +105,17 @@ class GA4GHAlignment implements Alignment {
     }
   }
   debugString(): string {
-    return 'in debugString function'
+    return `Name: ${this.name}
+    Position: ${this.pos.toString()}
+    CIGAR: ${this.getCigarString()}
+    Sequence: ${this.alignment.alignedSequence}
+    Quality:  ${this.alignment.alignedQuality}
+        `;
   }
+  getCigarString(): string {
+    return makeCigarString(this.alignment.alignment.cigar);
+  }
+  
 
   getCoverage(referenceSource: Object): CoverageCount {
     return {
@@ -120,6 +129,10 @@ class GA4GHAlignment implements Alignment {
     // this.alignment.id would be appealing here, but it's not actually unique!
     return alignment.fragmentName + ':' + alignment.readNumber;
   }
+}
+
+function makeCigarString(cigarOps: Array<{op:string; length:number}>) {
+  return cigarOps.map(({op, length}) => length + op).join('');
 }
 
 module.exports = GA4GHAlignment;
