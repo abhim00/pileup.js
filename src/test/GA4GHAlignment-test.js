@@ -38,7 +38,6 @@ describe('GA4GHAlignment', function() {
     });
     expect(a.debugString().length).to.be.above(0);
     console.log(a.debugString());
-  
     done();
   });
 

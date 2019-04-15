@@ -113,7 +113,7 @@ class GA4GHAlignment implements Alignment {
         `;
   }
   getCigarString(): string {
-    return makeCigarString(this.alignment.alignment.cigar);
+    return makeCigarString(this.cigarOps);
   }
   
 
