@@ -3,6 +3,7 @@
  * @flow
  */
 'use strict';
+
  
 import type {GenomeRange} from './types';
 import type ContigInterval from './ContigInterval';

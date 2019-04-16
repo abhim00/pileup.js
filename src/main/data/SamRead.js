@@ -1,4 +1,3 @@
-/*global Alignment*/
 /**
  * This class parses and represents a single read in a SAM/BAM file.
  *
@@ -38,7 +37,7 @@ function strandFlagToString(reverseStrand: number): Strand {
 }
 
 
-class SamRead implements Alignment {
+class SamRead /* implements Alignment */ {
   buffer: ArrayBuffer;
   offset: VirtualOffset;
 

@@ -30,7 +30,7 @@ var OP_MAP = {
  * This class acts as a bridge between org.ga4gh.GAReadAlignment and the
  * pileup.js Alignment type.
  */
-class GA4GHAlignment implements Alignment {
+class GA4GHAlignment /* implements Alignment */ {
   pos: number;
   ref: string;
   alignment: Object;
@@ -131,7 +131,7 @@ class GA4GHAlignment implements Alignment {
   }
 }
 
-function makeCigarString(cigarOps: Array<{op:string; length:number}>) {
+function makeCigarString(cigarOps: Array<CigarOp>) {
   return cigarOps.map(({op, length}) => length + op).join('');
 }
 
